@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		
+	</head>
+
+	<body>
+		<img width="100px" height="100px" src="" id="aaaa"/>
+		<button id = "a">hello</button>
+		<script src="js/mui.min.js"></script>
+		<script src = "js/loginjs/Ajax.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			document.getElementById("a").addEventListener("tap",function(){
+				var rentvalid = {
+						data: {
+							
+
+						}
+					} 
+					console.log(rentvalid);
+					//调用ajax，参数：请求后台function名称，传的参数对象
+					var ifvalid = publicAjax("houseSubmit/addNew.do", rentvalid);
+			})
+		</script>
+	</body>
+
+</html>

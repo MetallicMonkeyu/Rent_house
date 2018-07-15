@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/main.css" rel="stylesheet" />
+		<style type="text/css">
+			#logo {
+				width: 50px;
+				height: 50px;
+			}
+			
+			.mui-table-view {
+				margin-top: 20px;
+			}
+			
+			#username {
+				font-family: 'Helvetica Neue', Helvetica, sans-serif;
+				font-size: 16px;
+				color: #555;
+			}
+			
+			.bgr {
+				background-image: url(images/sb.png);
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-attachment: scroll;
+				background-size: cover;
+				background-color: #464646;
+			}
+		</style>
+
+	</head>
+
+	<body class="default">
+
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<!--侧滑菜单部分-->
+			<aside id="offCanvasSide" class="mui-off-canvas-left">
+				<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
+					<div class="mui-content">
+						<ul class="mui-table-view mui-table-view-chevron" id="login">
+							<li class="mui-table-view-cell mui-media kong">
+								<!--<a class="mui-navigate-right page-show" id="account" href="login.html">-->
+								<img class="mui-media-object mui-pull-left head-img" id="head-img" src="images/iconfont-tianjia.png">
+								<div class="mui-media-body" style="margin-top: 11px;">
+									<p class='mui-ellipsis' id="username">未登陆，请登录</p>
+								</div>
+								<!--</a>-->
+
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron" id="safety">
+							<li class="mui-table-view-cell">
+								账号与安全
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell">
+								<a href="#notifications" class="mui-navigate-right">新消息通知</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron" id = "mysource">
+							<li class="mui-table-view-cell">
+								<a href="#privacy" class="mui-navigate-right">我的发布</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a href="#general" class="mui-navigate-right">我的关注</a>
+							</li>
+						</ul>
+						<!--<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell">
+								<a href="#about" class="mui-navigate-right ">关于MUI <i class="mui-pull-right update">V3.6.0</i></a>
+							</li>
+						</ul>-->
+						<!--<ul class="mui-table-view">
+							<li class="mui-table-view-cell" style="text-align: center;">
+								<a>退出登录</a>
+							</li>
+						</ul>-->
+					</div>
+				</div>
+			</aside>
+			<div class="mui-inner-wrap">
+				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper bgr">
+					<div class="mui-content-padded">
+						<div class="mui-row">
+							<div class="mui-col-sm-8 mui-col-xs-8 mui-text-center">
+								<img src="images/no-photo.png" id="logo"></img>
+							</div>
+							<div class="mui-col-sm-4 mui-col-xs-4 mui-text-center">
+								<div class="mui-btn logout-btn" id="Cancellation">
+									<span class="mui-icon mui-icon-refresh"></span>退出登录
+								</div>
+							</div>
+						</div>
+						<div class="mui-row">
+							<div class="white border1px"></div>
+							<div>
+								<h5 class="white pad10">欢迎您！</h5></div>
+							<div>
+								<h2 class="white pad10">快租     &nbsp; &nbsp;<label style="font-size: 15px;">当前登录:</label></h2></div>
+						</div>
+						<a id="house" href="#pickPhoto">
+							<div class="mui-row redborder" id="barcode">
+
+								<div class="mui-col-sm-6 mui-col-xs-6 mui-text-center">
+									<span class="mui-icon mui-icon-home bigicon"></span>
+								</div>
+								<div class="mui-col-sm-6 mui-col-xs-6">
+									<div class="brown" id="camera">发布房源</div>
+									<!--<div>
+						<h6 class="brown">今日收款笔数:0笔</h6></div>
+					<div>
+						<h6 class="brown">今日收款金额：0.00元</h6></div>-->
+								</div>
+							</div>
+						</a>
+						<div class="mui-row brown">
+							<div class="mui-col-sm-6 mui-col-xs-6 mui-text-center">
+								<a>
+									<div class="transback" id="search">
+										<span class="mui-icon mui-icon-starhalf"></span>
+										<div>寻找房源</div>
+									</div>
+								</a>
+							</div>
+							<div class="mui-col-sm-6 mui-col-xs-6 mui-text-center" id="transromer">
+								<a>
+									<div class="transback" id="roommate">
+										<span class="mui-icon mui-icon-list"></span>
+										<div>寻求室友</div>
+									</div>
+								</a>
+							</div>
+						</div>
+						<!--<div class="mui-row brown">
+							<div class="mui-col-sm-6 mui-col-xs-6 mui-text-center">
+								<a>
+									<div class="transback">
+										<span class="mui-icon mui-icon-camera"></span>
+										<div>券码核销</div>
+									</div>
+								</a>
+							</div>
+							<div class="mui-col-sm-6 mui-col-xs-6 mui-text-center">
+								<a>
+									<div class="transback">
+										<span class="mui-icon mui-icon-gear"></span>
+										<div>系统设置</div>
+									</div>
+								</a>
+							</div>
+						</div>-->
+					</div>
+				</div>
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+		</div>
+		<div id="pickPhoto" class="mui-popover mui-popover-action mui-popover-bottom">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" id="takePhoto">
+					拍照
+				</li>
+				<li class="mui-table-view-cell" id="existPhoto">
+					从相册选取
+				</li>
+			</ul>
+			<ul class="mui-table-view" id="cancil">
+				<li class="mui-table-view-cell">
+					取消
+				</li>
+			</ul>
+		</div>
+
+		<script src="js/mui.min.js"></script>
+		<script src = "js/loginjs/Ajax.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			//			windows.onload();
+			//function init(){
+			mui.plusReady(function() {
+				var user_id = localStorage.getItem("User_ID");
+				if (user_id == null || user_id == ""){
+					return "";
+				}else{
+				var user = {
+					data: {
+						"User_ID": user_id
+					}
+				};
+				var ifvalid = publicAjax("checkLogin.do", user)||"";
+
+				if(!ifvalid.success) {
+					mui.toast("网络异常")
+				} else {
+//					alert(document.getElementById("username").innerHTML)
+//					console.log(ifvalid)
+//								localStorage.setItem("User_ID",ifvalid[0].password);
+					if(ifvalid.list[0].portrait != null) { 
+						document.getElementById("head-img").src = ifvalid.list[0].portrait;
+						document.getElementById("logo").src = ifvalid.list[0].portrait;
+					}
+					if(ifvalid.list[0].username != null){
+						document.getElementById("username").innerHTML=ifvalid.list[0].username;
+					}
+				}
+			}
+				
+			})
+			var offCanvasWrapper = mui('#offCanvasWrapper');
+			//主界面容器
+
+			//主界面‘显示侧滑菜单’按钮的点击事件
+			document.getElementById('logo').addEventListener('tap', function() {
+				offCanvasWrapper.offCanvas('show');
+			});
+			//			offCanvasWrapper.offCanvas().refresh();
+			document.getElementById("safety").addEventListener('tap', function() {
+				mui.openWindow({
+					url: 'safety.html',
+					id: 'safety'
+				})
+			})
+			document.getElementById("login").addEventListener('tap', function() {
+				mui.openWindow({
+					url: 'login.html',
+					id: 'login'
+				})
+			})
+			//			mui('.mui-scroll-wrapper').scroll();
+
+			function takePhoto() {
+				var Photo = document.getElementById("takePhoto");
+				//			Photo.addEventListener('tap', function() {
+				var c = plus.camera.getCamera();
+				////				alert()
+				//				
+				c.captureImage(function(e) {
+					plus.io.resolveLocalFileSystemURL(e, function(entry) {
+						var s = entry.toLocalURL() + "?version=" + new Date().getTime();
+						console.log("s=" + s);
+						open_Add(s);
+
+					}, function(e) {
+						console.log("读取拍照文件错误：" + e.message);
+					});
+				}, function(s) {
+					console.log("error" + s);
+				}, {
+					filename: "_doc/cargo.jpg"
+				})
+				//			})
+
+				function open_Add(pa) {
+					mui.openWindow({
+						url: "addNew.html",
+						id: "addNew",
+						extras: {
+							path_one: pa
+						}
+					})
+				}
+			}
+
+			function existPhoto() {
+				var Photo = document.getElementById("existPhoto");
+				//				Photo.addEventListener('tap', function() {
+				// 从相册中选择图片
+				//	outSet("从相册中选择图片:");
+				plus.gallery.pick(function(path) {
+					//outLine(path);
+					open_galleryAdd(path);
+					//showImg( path );
+					//createItem(path);
+				}, function(e) {
+					//outSet( "取消选择图片" );
+				}, { filter: "image" });
+				//				})
+
+				function open_galleryAdd(pp) {
+					mui.openWindow({
+						url: "addNew.html",
+						id: "addNew",
+						extras: {
+							path_two: pp
+						}
+					})
+				}
+			}
+			document.getElementById('takePhoto').addEventListener('tap', function() {
+				mui('#pickPhoto').popover('toggle');
+				takePhoto()
+
+			})
+			document.getElementById('existPhoto').addEventListener('tap', function() {
+				mui('#pickPhoto').popover('toggle');
+				existPhoto()
+			})
+
+			document.getElementById('cancil').addEventListener('tap', function() {
+				mui('#pickPhoto').popover('toggle');
+			})
+			document.getElementById('mysource').addEventListener('tap', function() {
+				mui.openWindow({
+						url: "displaylist.html", 
+						id: "displaylist",
+					})
+			})
+			document.getElementById('search').addEventListener('tap', function() {
+				mui.openWindow({
+						url: "findhouse.html", 
+						id: "findhouse",
+					})
+			})
+			document.getElementById('roommate').addEventListener('tap', function() {
+				mui.openWindow({
+						url: "find_roommate.html", 
+						id: "findroommate",
+					})
+			})
+			
+			//			}
+			//	window.onload = init();
+			//			window.opener.location.href=window.opener.location.href;
+
+			//			//document.getElementById('offCanvasContentScroll').backgroundColor="red";
+			//			var back_first = null;
+			//			mui.back = function() {
+			//				if(!back_first) {
+			//					back_first = new Date().getTime();
+			//					mui.toast('再按一次退出应用');
+			//					setTimeout(function() {
+			//						back_first = null;
+			//					}, 2000);
+			//				} else {
+			//					if(new Date().getTime() - back_first < 2000) {
+			//						plus.runtime.quit();
+			//					}
+			//				}
+			//				return false;
+			//			}
+			//			document.getElementById('barcode').addEventListener('tap', function() {
+			//				mui.openWindow({
+			//					url: 'MainPage/InputAmount.html',
+			//					id: 'InputAmount'
+			//				})
+			//
+			//			})
+			//			document.getElementById('transromer').addEventListener('tap', function() {
+			//				mui.openWindow({
+			//					url: 'MainPage/returnAoum.html',
+			//					id: 'returnAoum'
+			//				})
+			//
+			//			})
+			//			document.getElementById('Cancellation').addEventListener('tap', function() {
+			//				openw = plus.webview.create('storeList.html', 'storeList')
+			//				openw.addEventListener('loaded', function() { //页面加载完成后才显示
+			//					openw.show();
+			//					setTimeout(function() { //延后显示可避免低端机上动画时白屏
+			//						var curwebview = plus.webview.currentWebview();
+			//						curwebview.hide();
+			//						curwebview.close();
+			//					}, 200);
+			//					var jsonData = {
+			//						data: {
+			//							"username": username,
+			//							"passwords": passwords
+			//						}
+			//					};
+			//					var result = publicAjax("http://192.168.155.8:8080/merchant_web/queryPhoneLogin.do", jsonData);
+			//				}, false);
+			//
+			//			})
+		</script>
+	</body>
+
+</html>

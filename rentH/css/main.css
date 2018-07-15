@@ -1,0 +1,60 @@
+a{
+	color: inherit;
+	cursor: pointer;
+}
+/*.default{
+	background-image: url(../images/sb.png);*/
+	/*background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: #464646;*/
+}*/
+.mui-content-padded{
+	margin: 40px 20px 10px 20px;
+}
+.logout-btn{
+	color: white;
+	background: none;
+	height: 28px;
+	padding: 4px 12px; 
+	border-radius: 14px;
+	border-color: white;
+	box-shadow: 1px 1px 5px #666;;
+}
+.logout-btn:hover,.logout-btn:active{
+	color: #CCCCCC;
+	border-color: #CCCCCC;
+}
+.white{
+	color: white;
+}
+.brown{
+	color: #33110c;
+}
+.border1px{
+	height: 15px;
+	border-bottom: 1px solid #DDDDDD;
+}
+.redborder{
+	border: 2px solid #FF5053;
+	background: rgba(247, 247, 247, 0.6);
+	padding: 40px 20px 40px 10px;
+	margin-top: 10px;
+}
+.transback{
+	background: rgba(247, 247, 247, 0.6);
+	margin: 10px 5px 0px 5px;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+.transback:hover,.transback:active{
+	background: rgba(247, 247, 247, 0.5);
+	color: #33110c;
+}
+.pad10{
+	padding-top: 10px;
+}
+.bigicon{
+	font-size: 3.5em;
+}

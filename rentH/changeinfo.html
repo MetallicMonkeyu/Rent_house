@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style>
+			.area {
+				margin: 20px auto 0px auto;
+			}
+			
+			.mui-input-group:first-child {
+				margin-top: 20px;
+			}
+			
+			.mui-input-group label {
+				width: 22%;
+			}
+			
+			.mui-input-row label~input,
+			.mui-input-row label~select,
+			.mui-input-row label~textarea {
+				width: 78%;
+			}
+			
+			.mui-checkbox input[type=checkbox],
+			.mui-radio input[type=radio] {
+				top: 6px;
+			}
+			
+			.mui-content-padded {
+				margin-top: 25px;
+			}
+			
+			.mui-btn {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">我的信息</h1>
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group">
+
+				<div class="mui-input-row">
+					<label>手机</label>
+					<input id='Phone_number' type="number" class="mui-input-clear mui-input" placeholder="请输入手机号码">
+				</div>
+				<div class="mui-input-row">
+					<label>微信号</label>
+					<input id='Wechat_ID' type="text" class="mui-input-clear mui-input" placeholder="请输入微信号码">
+				</div>
+				<div class="mui-input-row">
+					<label>年级</label>
+					<input id='Classof' type="text" class="mui-input-clear mui-input" placeholder="请输入年级">
+				</div>
+				<div class="mui-input-row">
+					<label><img class="vectorgraph "><span class="description">性别</span></label>
+				<div style="padding-top: 10px;">
+						<input type="radio" name="Gender" value="1" id="c_rent">&nbsp;<span style="font-size:medium;">男</span> &nbsp;&nbsp;&nbsp;
+						<input type="radio" name="Gender" value="0" id="c_roommate">&nbsp;<span style="font-size:medium;">女</span>
+					</div>
+				</div>
+
+			</form>
+			<div class="mui-content-padded">
+				<button id='save' class="mui-btn mui-btn-block mui-btn-primary">保存</button>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/loginjs/Ajax.js"></script>
+		<script type="text/javascript">
+			mui.init()
+				mui.plusReady(function() {
+					var save = document.getElementById('save');
+					var Phone_number = document.getElementById('Phone_number');
+					var Wechat_ID = document.getElementById('Wechat_ID');
+					var Classof = document.getElementById('Classof');
+					var Gender = document.getElementsByName('Gender');
+					save.addEventListener('tap', function(event) {
+//						if(code==0){
+//							mui.toast("此用户已存在，请更换用户名");
+//							return;
+//						}
+//var user_id = localStorage.getItem("User_ID");
+var user_id = "2";
+						var changeInfo = {
+							data:{
+							"User_ID":user_id,
+							"Classof": Classof.value, 
+							"Phone_number": Phone_number.value, 
+							"Wechat_ID": Wechat_ID.value,
+							"Gender":Gender.value
+							}
+						};
+//						var passwordConfirm = passwordConfirmBox.value;
+//						if(passwordConfirm != regInfo.password) {
+//							plus.nativeUI.toast('密码两次输入不一致');
+//							return;
+//						}
+						if (changeInfo.Phone_number.length > 13) {
+							return callback('手机号码最长不能 超过13 个字符');
+						}
+						
+//						if (!checkEmail(regInfo.email)) {
+//							return callback('邮箱地址不合法');
+//						}
+					
+						//获取id=account的控件的参数value
+						
+							//调取ajax请求后台      第一个参数为请求地址url  第二个参数往后台传的值 需与后台Vo一致 
+							//返回值ifvalid
+							var changeInfo = publicAjax("update.do", changeInfo);
+//							//处理后台返回结果
+							if(changeInfo == "error") {
+								mui.toast("网络错误")
+							} else{
+								if (changeInfo == 0){
+									
+									mui.toast("修改失败")
+								}
+								if (changeInfo == 1){
+									mui.toast("修改成功")
+								}
+						}
+//						localStorage.setItem('a','ryq')
+//						
+//						console.log(localStorage.getItem('a')); 
+					});
+				});
+		</script>
+	</body>
+
+</html>

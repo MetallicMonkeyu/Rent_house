@@ -1,0 +1,525 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/mui.picker.min.css" rel="stylesheet" />
+		<link href="css/mui.poppicker.css" rel="stylesheet" />
+		<style type="text/css">
+			label {
+				color: #AAAAAA;
+				font-size: small;
+			}
+			
+			.hidden {
+				display: none;
+			}
+			
+			.image-list {
+				width: 100%;
+				height: 85px;
+				background-size: cover;
+				padding: 10px 10px;
+				overflow: hidden;
+			}
+			
+			.image-item {
+				width: 65px;
+				height: 65px;
+				/*background-image: url(../images/iconfont-tianjia.png);*/
+				background-size: 100% 100%;
+				display: inline-block;
+				position: relative;
+				border-radius: 5px;
+				margin-right: 10px;
+				margin-bottom: 10px;
+				/*border: solid 1px #e8e8e8;*/
+				vertical-align: top;
+			}
+			
+			.image-item .file {
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				width: 100%;
+				height: 100%;
+				opacity: 0;
+				cursor: pointer;
+				z-index: 0;
+			}
+			
+			.image-item .space {
+				border: none;
+			}
+			
+			.image-item .image-close {
+				position: absolute;
+				display: inline-block;
+				right: -6px;
+				top: -6px;
+				width: 20px;
+				height: 20px;
+				text-align: center;
+				line-height: 20px;
+				border-radius: 12px;
+				background-color: #FF5053;
+				color: #f3f3f3;
+				border: solid 1px #FF5053;
+				font-size: 9px;
+				font-weight: 200;
+				/*z-index: 999;*/
+			}
+			
+			.image-item .image-up {
+				height: 65px;
+				width: 65px;
+				border-radius: 10px;
+				line-height: 65px;
+				border: 1px solid #ccc;
+				color: #ccc;
+				display: inline-block;
+				text-align: center;
+			}
+			
+			.image-item .image-up:after {
+				font-family: "微软雅黑";
+				content: '+';
+				font-size: 60px;
+			}
+			
+			.image-item.space .image-close {
+				display: none;
+			}
+			
+			.row {
+				width: 100%;
+				background-color: #fff;
+			}
+			
+			.aaa {
+				z-index: auto, auto;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">添加房源</h1>
+
+		</header>
+
+		<div class="mui-content">
+			<div class="mui-card">
+				<img class="mui-media-object mui-pull-left" style="width: 100%;height: 300px;" src="images/no-photo.png" id="photo123" />
+
+			</div>
+			<div class="mui-card">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-collapse mui-active">
+						<a class="mui-navigate-right" href="#">房屋基本信息</a>
+						<div class="mui-collapse-content">
+							<form class="mui-input-group">
+								<div class="mui-input-row">
+									<label>房主姓名</label>
+									<input type="text" style="color: #CF2D28;" id="c_name" value="aa">
+								</div>
+								<div class="mui-input-row">
+									<label>房屋名称</label>
+									<input type="text" style="color: #CF2D28;" id="c_hname" value="aa">
+								</div>
+								<div class="mui-input-row" id="showCityPicker">
+									<label>州/城市</label>
+									<input type="text" style="color: #CF2D28;" id="zhoushi" readonly="readonly" placeholder="点击选择州/市">
+								</div>
+
+								<div class="mui-input-row">
+
+									<label>详细地址</label>
+									<input type="text" style="color: #CF2D28;" id="c_address" value="aa">
+
+								</div>
+
+								<div class="mui-input-row">
+									<label>房型</label>
+									<input type="text" style="color: #CF2D28;" id="c_type" value="aa">
+								</div>
+							</form>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="mui-card">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-collapse mui-active">
+						<a class="mui-navigate-right" href="#">其它信息</a>
+						<div class="mui-collapse-content">
+							<form class="mui-input-group">
+								<div class="mui-input-row">
+									<label><img class="vectorgraph "><span class="description">转租/合租</span></label>
+									<div style="padding-top: 10px;">
+										<input type="radio" name="ifrent" value="1" id="c_rent">&nbsp;<span style="font-size:medium;">我要转租</span> &nbsp;&nbsp;&nbsp;
+										<input type="radio" name="ifrent" value="0" checked="checked" id="c_roommate">&nbsp;<span style="font-size:medium;">找人合租</span>
+									</div>
+								</div>
+
+								<div class="mui-input-row">
+									<label>理想租金</label>
+									<input type="text" style="color: #CF2D28;" id="c_amount">
+								</div>
+								<div id='image-list' class="row image-list">
+
+									<label style="margin-left:6px">辅助照片</label>
+									<a href="#pickPhoto" id="add">
+										<div class="image-item">
+											<div class="image-up">
+
+											</div>
+										</div>
+									</a>
+								</div>
+							</form>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<div class="mui-card">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">备注（对租户的要求）</a>
+						<div class="mui-collapse-content">
+							<form class="mui-input-group">
+								<textarea id="c_notes" class="mui-input-clear question" placeholder="最多一百个字" cols=40 rows=4></textarea>
+
+							</form>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!--<img width="100px" height="100px" id="aaaa" />-->
+			<div class="mui-button-row" style="padding-bottom: 30px;" id="Button_done">
+				<button class="mui-btn mui-btn-primary" type="button" id="save">发布</button>&nbsp;&nbsp;
+
+			</div>
+			<div id="pickPhoto" class="mui-popover mui-popover-action mui-popover-bottom">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell" id="takePhoto">
+						拍照
+					</li>
+					<li class="mui-table-view-cell" id="existPhoto">
+						从相册选取
+					</li>
+				</ul>
+				<ul class="mui-table-view" id="picture">
+					<li class="mui-table-view-cell">
+						取消
+					</li>
+				</ul>
+			</div>
+
+			<script src="js/mui.min.js"></script>
+			<script src="js/mui.picker.min.js"></script>
+			<script src="js/loginjs/Ajax.js"></script>
+			<script src="js/mui.poppicker.js"></script>
+			<script src="js/city.data.js"></script>
+			<!--<script src=" js/addNew.js" type="text/javascript" charset="utf-8"></script>-->
+			<script type="text/javascript">
+				mui.init();
+				mui.ready(function() {
+					var cityPicker = new mui.PopPicker({
+						layer: 2
+					});
+					cityPicker.setData(cityData);
+					var showCityPickerButton = document.getElementById('showCityPicker');
+					var cityResult = document.getElementById('zhoushi');
+					showCityPickerButton.addEventListener('tap', function(event) {
+						cityPicker.show(function(items) {
+							cityResult.value = items[0].text + "  " + items[1].text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, true);
+				})
+
+				mui.plusReady(function() {
+
+					var path_one = plus.webview.currentWebview().path_one;
+					//alert(path_one);
+					if(path_one != null && path_one != "") {
+						document.getElementById("photo123").src = path_one;
+					}
+
+					var path_two = plus.webview.currentWebview().path_two;
+					//alert(path_two);
+					if(path_two != null && path_two != "") {
+						document.getElementById("photo123").src = path_two;
+					}
+
+					//				mui.ready(function(){
+					//级联示例
+
+					//				})
+					//设备信息，无需修改
+					//					addNew.deviceInfo = {
+					//						appid: plus.runtime.appid,
+					//						imei: plus.device.imei, //设备标识
+					//						images: feedback.files, //图片文件
+					//						p: mui.os.android ? 'a' : 'i', //平台类型，i表示iOS平台，a表示Android平台。
+					//						md: plus.device.model, //设备型号
+					//						app_version: plus.runtime.version,
+					//						plus_version: plus.runtime.innerVersion, //基座版本号
+					//						os: mui.os.version,
+					//						net: '' + plus.networkinfo.getCurrentType()
+					//					}
+
+				})
+				var index = 0;
+
+				function existPhoto() {
+					var size = 0;
+					plus.gallery.pick(function(e) {
+						//				console.log("event:"+e);
+						var name = e.substr(e.lastIndexOf('/') + 1);
+						console.log("name:" + name);
+
+						plus.zip.compressImage({
+							src: e,
+							dst: '_doc/' + name,
+							overwrite: true,
+							quality: 50
+						}, function(zip) {
+							size += zip.size
+							console.log("filesize:" + zip.size + ",totalsize:" + size);
+							if(size > (10 * 1024 * 1024)) {
+								return mui.toast('文件超大,请重新选择~');
+							}
+							var placeholder = document.createElement('div');
+							placeholder.setAttribute('class', 'image-item ');
+							var closeButton = document.createElement('div');
+							closeButton.setAttribute('class', 'image-close  aaa');
+							closeButton.innerHTML = "X";
+							//			closeButton.id = "img-" + index;
+							//小X的点击事件
+							closeButton.addEventListener('tap', function(event) {
+								closeButton.parentNode.parentNode.removeChild(placeholder);
+								index--;
+								if(index < 2) {
+									document.getElementById("add").hidden = false;
+								}
+							})
+							//placeholder.src = zip.target;
+							placeholder.style.backgroundImage = 'url(' + zip.target + ')';
+							placeholder.appendChild(closeButton);
+
+							document.getElementById("image-list").insertBefore(placeholder, document.getElementById("add"));
+							index++;
+							if(index >= 2) {
+								document.getElementById("add").hidden = true;
+							}
+
+							//				
+						}, function(zipe) {
+							mui.toast('压缩失败！')
+						});
+
+					}, function(e) {
+						mui.toast(e.message);
+					}, {});
+					//					function hid(){
+					//						if (document.getElementById("image-list").length+1 >= 2){
+					//							document.getElementById("image-list").value[3].HIDDEN
+					//						}
+					//					}
+				}
+
+				function takePhoto() {
+					var size = 0;
+					var c = plus.camera.getCamera();
+					c.captureImage(function(e) {
+							var name = e.substr(e.lastIndexOf('/') + 1);
+							console.log("name:" + name);
+							plus.zip.compressImage({
+								src: e,
+								dst: '_doc/' + name,
+								overwrite: true,
+								quality: 20
+							}, function(zip) {
+								size += zip.size
+								console.log("filesize:" + zip.size + ",totalsize:" + size);
+								if(size > (10 * 1024 * 1024)) {
+									return mui.toast('文件超大,请重新选择~');
+								}
+								var placeholder = document.createElement('div');
+								placeholder.setAttribute('class', 'image-item ');
+								var closeButton = document.createElement('div');
+								closeButton.setAttribute('class', 'image-close');
+
+								closeButton.innerHTML = "X";
+								//			closeButton.id = "img-" + index;
+								//小X的点击事件
+								closeButton.addEventListener('tap', function(event) {
+									closeButton.parentNode.parentNode.removeChild(placeholder);
+									index--;
+									if(index < 2) {
+										document.getElementById("add").hidden = false;
+									}
+									//		alert();
+								})
+								//placeholder.src = zip.target;
+								placeholder.style.backgroundImage = 'url(' + zip.target + ')';
+								placeholder.appendChild(closeButton);
+
+								document.getElementById("image-list").insertBefore(placeholder, document.getElementById("add"));
+								index++;
+								if(index >= 2) {
+									document.getElementById("add").hidden = true;
+								}
+							}, function(zipe) {
+								mui.toast('压缩失败！')
+							});
+
+						}),
+						function(e) {
+							mui.toast(e.message);
+						}
+
+				}
+
+				function uploadImg(data) {
+					console.log(JSON.stringify(data))
+					console.log(JSON.stringify(data.Hostname))
+					plus.nativeUI.showWaiting("发布中...");
+					var task = plus.uploader.createUpload("http://192.168.70.107:8080/app/houseSubmit/addNew.do", 
+					{ method: "post", blocksize: 204800, priority: 100, timeout: 60 },
+						function(t, status) {
+							// 上传完成
+							if(status == 200) {
+								plus.nativeUI.closeWaiting();
+								mui.toast("发布成功!");
+								plus.webview.currentWebview().close()
+							} else {
+								mui.toast("发布失败!");
+								plus.nativeUI.closeWaiting();
+							}
+						}
+					);
+					task.addFile(data.Pic_one_file, { key: "Pic_one_file" }); // key:文件名，name:名称
+					task.addFile(data.Pic_two_file, { key: "Pic_two_file" }); // key:文件名，name:名称
+					task.addFile(data.Pic_three_file, { key: "Pic_three_file" }); // key:文件名，name:名称
+					task.addData("User_ID", data.User_ID);
+					task.addData("Hostname", data.Hostname);
+					task.addData("Housename", data.Housename);
+					task.addData("Address_state", data.Address_state);
+					task.addData("Type", data.Type);
+					task.addData("Rent", data.Rent);
+					task.addData("Rent_or_rm", data.Rent_or_rm);
+					task.addData("Notes", data.Notes);
+					task.addData("Address_city", data.Address_city);
+					task.addData("Address_spec", data.Address);
+					task.start();
+				};
+
+				var save = document.getElementById("save");
+				save.addEventListener("tap", function() {
+
+					var Hostname = document.getElementById("c_name");
+					if(Hostname.value == null || Hostname.value == "") {
+						mui.alert(Hostname.previousElementSibling.innerText + "不能为空")
+						return
+					}
+					var Housename = document.getElementById("c_hname");
+					if(Housename.value == null || Housename.value == "") {
+						mui.alert(Housename.previousElementSibling.innerText + "不能为空")
+						return
+					}
+
+					var State_city = document.getElementById("zhoushi");
+					var State_city_arr = State_city.value.split("  ");
+					var Address_state = State_city_arr[0];
+					if(State_city.value == null || State_city.value == "") {
+						mui.alert(State_city.previousElementSibling.innerText + "不能为空")
+						return
+					}
+					var Type = document.getElementById("c_type");
+					if(Type.value == null || Type.value == "") {
+						mui.alert(Type.previousElementSibling.innerText + "不能为空")
+						return
+					}
+					var Address_city = State_city_arr[1];
+
+					var Address = document.getElementById("c_address");
+					if(Address.value == null || Address.value == "") {
+						mui.alert(Address.previousElementSibling.innerText + "不能为空")
+						return
+					}
+					var Rent_or_rm = document.getElementsByName("ifrent");
+					var if_value = 0;
+					for(var i = 0; i < Rent_or_rm.length; i++) {
+						if(Rent_or_rm[i].checked) {
+							if_value = Rent_or_rm[i].value;
+						}
+
+					}
+					var Pic_one = document.getElementById("photo123");
+					//取两个辅助图片存库
+					var Pic_twophotos = document.getElementsByClassName("image-item");
+					var nourl_one = "";
+					var nourl_two = "";
+					for(var i = 0; i < Pic_twophotos.length; i++) {
+
+						var Imageurl = Pic_twophotos[i].style.backgroundImage;
+						if(Imageurl != null && Imageurl != "") {
+							if(i == 0) {
+								nourl_one = Imageurl.replace('url(', '');
+								nourl_one = nourl_one.replace(')', '');
+							}
+							if(i > 0) {
+								nourl_two = Imageurl.replace('url(', '');
+								nourl_two = nourl_two.replace(')', '');
+							}
+						}
+					}
+					//参数，创建数组对象
+					var user_id = localStorage.getItem("User_ID");
+					var rentvalid = {
+						"User_ID": user_id,
+						"Hostname": Hostname.value,
+						"Housename": Housename.value,
+						"Address_state": Address_state,
+						"Type": Type.value,
+						"Rent": document.getElementById("c_amount").value,
+						"Rent_or_rm": if_value,
+						"Notes": document.getElementById("c_notes").value,
+						"Address_city": Address_city,
+						"Address_spec": Address.value,
+						"Pic_one_file": Pic_one.src,
+						"Pic_two_file": nourl_one,
+						"Pic_three_file": nourl_two
+					}
+					uploadImg(rentvalid);
+
+				})
+				document.getElementById('takePhoto').addEventListener('tap', function() {
+					mui('#pickPhoto').popover('toggle');
+					takePhoto()
+
+				})
+				document.getElementById('existPhoto').addEventListener('tap', function() {
+					mui('#pickPhoto').popover('toggle');
+					existPhoto()
+				})
+
+				document.getElementById('picture').addEventListener('tap', function() {
+					mui('#pickPhoto').popover('toggle');
+				})
+			</script>
+	</body>
+
+</html>
